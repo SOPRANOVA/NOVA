@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowDownRight, ArrowUpRight, Check, ChevronDown, Menu, X, Plus, MoveUpRight } from "lucide-react";
 
 const serviceCards = [
@@ -24,6 +24,15 @@ export default function Home() {
   const [faq, setFaq] = useState(0);
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  useEffect(() => {
+    document.body.classList.add("motion-enabled");
+    const items = document.querySelectorAll("main section, .service-card, .case-row, .feature-row, .quote-grid blockquote, .article-grid > *, .approach-grid > div");
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); }
+    }), { threshold: 0.12 });
+    items.forEach((item) => observer.observe(item));
+    return () => { observer.disconnect(); document.body.classList.remove("motion-enabled"); };
+  }, []);
   const nav = ["Home", "Pricing", "About", "Projects", "Articles", "Contact Us"];
   const go = (id:string) => { document.getElementById(id)?.scrollIntoView({ behavior:"smooth" }); setMenuOpen(false); };
   return <div className="site-shell">
@@ -41,7 +50,7 @@ export default function Home() {
 
       <section className="case-studies" id="projects"><div className="container"><SectionHead eyebrow="04 / CASE STUDIES" title="Proven neural solutions" copy="We partner with industry leaders to deploy bespoke AI agents that solve complex operational hurdles and drive measurable growth."/><div className="case-list">{[["Cigna Smart Health Systems","Revolutionizing patient care through predictive analytics and seamless AI-driven diagnostic integration tools."],["Aetna Health Data Ecosystem","We automated Aetna’s member data management using secure AI to provide personalized care and clinical insights."],["Anthem Neural Care Network","We deployed a custom LLM to automate Anthem’s provider relations, reducing ticket latency by eighty-five percent."]].map(([title,copy],i)=><div className="case-row" key={title}><span>//2026</span><div><h3>{title}</h3><p>{copy}</p></div><ArrowUpRight/></div>)}</div><button className="outline" onClick={()=>go("contact")}>More projects <ArrowUpRight size={16}/></button></div></section>
 
-      <section className="product section-grid"><div className="product-copy"><SectionHead eyebrow="05 / OUR PRODUCT" title="Build logic at scale" copy="Design, deploy, and manage sophisticated AI workflows through an intuitive visual interface. No complex coding—just pure logic."/><button className="primary" onClick={()=>go("contact")}>Request demo <ArrowUpRight size={16}/></button></div><div className="workflow-window"><div className="window-top"><span>ARMORY / AGENT MODE</span><span>● LIVE</span></div><div className="workflow-canvas"><div className="node node-a">Email Trigger<small>IMAP</small></div><div className="connector c1"/><div className="node node-b">AI Agent<small>TOOLS AGENT</small></div><div className="connector c2"/><div className="node node-c">Send Email<small>MANUAL</small></div><div className="workflow-label">UNTITLED / 001</div></div></div></section>
+      <section className="product section-grid"><div className="product-copy"><SectionHead eyebrow="05 / OUR PRODUCT" title="Build logic at scale" copy="Design, deploy, and manage sophisticated AI workflows through an intuitive visual interface. No complex coding—just pure logic."/><button className="primary" onClick={()=>go("contact")}>Request demo <ArrowUpRight size={16}/></button></div><div className="workflow-window"><div className="window-top"><span>SOPRANOVA / AGENT MODE</span><span>● LIVE</span></div><div className="workflow-canvas"><div className="node node-a">Email Trigger<small>IMAP</small></div><div className="connector c1"/><div className="node node-b">AI Agent<small>TOOLS AGENT</small></div><div className="connector c2"/><div className="node node-c">Send Email<small>MANUAL</small></div><div className="workflow-label">UNTITLED / 001</div></div></div></section>
 
       <section className="features"><div className="container feature-layout"><div className="feature-intro"><SectionHead eyebrow="06 / THE SYSTEM" title="The infrastructure behind autonomy."/><div className="terminal">$ SOPRANOVA deploy --production<br/><span>✓ mapping knowledge graph</span><br/><span>✓ connecting 24 integrations</span><br/><span>✓ optimizing neural weights</span><br/><b>_ ready for your next move</b></div></div><div className="feature-list">{[["Infinite Visual Canvas","Map out multi-step agent behaviors on a high-precision grid. Drag and drop triggers, logic gates, and actions to craft custom paths."],["Autonomous Execution","Run complex decision trees without manual intervention. Our engine handles conditional branching and error recovery automatically."],["End-to-End Encryption","Every node and data transfer is shielded by industrial-grade security. Maintain total control over your organizational data flow."],["Production-Ready Stack","Connect core business platforms and internal services through secure, ready integrations that scale with your volume."]].map(([t,c],i)=><div className="feature-row" key={t}><span>0{i+1}</span><div><h3>{t}</h3><p>{c}</p></div><Plus size={18}/></div>)}</div></div></section>
 
