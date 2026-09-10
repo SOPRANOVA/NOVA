@@ -8,10 +8,10 @@ const serviceCards = [
   ["Data Mining", "Transform raw information into actionable intelligence. We build the pipelines and vector stores that power your organization’s future.", "04"],
 ];
 const faqs = [
-  ["What is the Armory platform?", "Armory is a specialized infrastructure for building and deploying custom AI agents. We provide the neural logic and edge nodes required to run autonomous workflows at enterprise scale."],
-  ["Who is this template designed for?", "Armory is built for ambitious AI agencies, automation studios, and product teams who need a systems-first way to communicate complex capability."],
-  ["Does Armory provide pre-built agents?", "We provide the foundations, integrations, and patterns to create custom agents that fit the way your organization works."],
-  ["How does it differ from a standard chatbot?", "Armory orchestrates tools, data, decision trees, and recovery logic — beyond a single conversational interface."],
+  ["What is the SOPRANOVA platform?", "SOPRANOVA is a specialized infrastructure for building and deploying custom AI agents. We provide the neural logic and edge nodes required to run autonomous workflows at enterprise scale."],
+  ["Who is this template designed for?", "SOPRANOVA is built for ambitious AI agencies, automation studios, and product teams who need a systems-first way to communicate complex capability."],
+  ["Does SOPRANOVA provide pre-built agents?", "We provide the foundations, integrations, and patterns to create custom agents that fit the way your organization works."],
+  ["How does it differ from a standard chatbot?", "SOPRANOVA orchestrates tools, data, decision trees, and recovery logic — beyond a single conversational interface."],
   ["Can I use my own custom domain?", "Yes. The production-ready system is designed to deploy to your domain and scale with your team."],
   ["Is there a limit to how many agents I can build?", "No artificial cap. Build and manage as many workflows as your infrastructure and team require."],
 ];
@@ -57,6 +57,6 @@ export default function Home() {
 
       <section className="newsletter"><div className="container newsletter-inner"><div><Pill>12 / GET STARTED</Pill><h2>Get smarter about<br/><em>AI systems.</em></h2><p>Weekly insights on automation, AI workflows, and real builds. No fluff, just what works.</p></div><form onSubmit={(e)=>{e.preventDefault();setSubscribed(true)}}><label htmlFor="email">YOUR EMAIL</label><div className="email-row"><input id="email" type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@company.com" required/><button className="primary" type="submit">{subscribed?<Check size={17}/>:"Subscribe"}</button></div>{subscribed&&<small className="success">You’re on the list.</small>}</form></div></section>
     </main>
-    <footer className="footer"><div className="footer-top"><div><div className="footer-brand">✦ armory</div><p>Seamlessly connect your custom data to GPT-4, Claude 3, and Perplexity.</p><span>2919 MANCHACA RD #102<br/>AUSTIN, TX 78704</span></div><div className="footer-links"><div><b>QUICK LINKS</b>{nav.slice(0,5).map(n=><a href={`#${n.toLowerCase().replaceAll(' ','-')}`} key={n}>{n}</a>)}</div><div><b>COMPANY</b><a href="#about">About Us</a><a href="#contact">Contact Us</a><a href="#contact">Book A Call</a><a href="#top">More Templates</a></div><div><b>POLICIES</b><a href="#top">Terms & Conditions</a><a href="#top">Privacy Policy</a></div></div></div><div className="footer-bottom"><span>armory</span><span>©2026 Armory AI. All rights reserved.</span><a href="#top">Back to top <MoveUpRight size={14}/></a></div></footer>
+    <footer className="footer"><div className="footer-top"><div><div className="footer-brand">✦ SOPRANOVA</div><p>Seamlessly connect your custom data to GPT-4, Claude 3, and Perplexity.</p><span>2919 MANCHACA RD #102<br/>AUSTIN, TX 78704</span></div><div className="footer-links"><div><b>QUICK LINKS</b>{nav.slice(0,5).map(n=><a href={`#${n.toLowerCase().replaceAll(' ','-')}`} key={n}>{n}</a>)}</div><div><b>COMPANY</b><a href="#about">About Us</a><a href="#contact">Contact Us</a><a href="#contact">Book A Call</a><a href="#top">More Templates</a></div><div><b>POLICIES</b><a href="#top">Terms & Conditions</a><a href="#top">Privacy Policy</a></div></div></div><div className="footer-bottom"><span>armory</span><span>©2026 Armory AI. All rights reserved.</span><a href="#top">Back to top <MoveUpRight size={14}/></a></div></footer>
   </div>
 }
