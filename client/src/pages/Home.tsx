@@ -27,7 +27,7 @@ export default function Home() {
   const nav = ["Home", "Pricing", "About", "Projects", "Articles", "Contact Us"];
   const go = (id:string) => { document.getElementById(id)?.scrollIntoView({ behavior:"smooth" }); setMenuOpen(false); };
   return <div className="site-shell">
-    <header className="topbar"><button className="brand" onClick={()=>go("top")} aria-label="Armory home"><span className="brand-mark">✦</span><span>armory</span></button><div className="top-links"><span>AI agency / 2026</span><button onClick={()=>go("contact")}>Book a call <ArrowUpRight size={14}/></button></div><button className="menu-button" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen?<X/>:<Menu/>}</button></header>
+    <header className="topbar"><button className="brand" onClick={()=>go("top")} aria-label="Armory home"><img className="brand-mark" src="https://framerusercontent.com/images/0TbS3oHkBx5N44vDnhERKRfl4o.png" alt=""/><span>armory</span></button><nav className="top-links"><button onClick={()=>go("about")}>AI Strategy</button><button onClick={()=>go("about")}>Custom Agents</button><button onClick={()=>go("about")}>Process Automation</button><button onClick={()=>go("about")}>Data Intelligence</button></nav><button className="menu-button" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen?<X/>:<Menu/>}</button></header>
     {menuOpen && <div className="menu-panel">{nav.map(n=><button key={n} onClick={()=>go(n.toLowerCase().replaceAll(" ","-"))}>{n}<ArrowUpRight size={18}/></button>)}</div>}
 
     <main id="top">
@@ -60,4 +60,3 @@ export default function Home() {
     <footer className="footer"><div className="footer-top"><div><div className="footer-brand">✦ armory</div><p>Seamlessly connect your custom data to GPT-4, Claude 3, and Perplexity.</p><span>2919 MANCHACA RD #102<br/>AUSTIN, TX 78704</span></div><div className="footer-links"><div><b>QUICK LINKS</b>{nav.slice(0,5).map(n=><a href={`#${n.toLowerCase().replaceAll(' ','-')}`} key={n}>{n}</a>)}</div><div><b>COMPANY</b><a href="#about">About Us</a><a href="#contact">Contact Us</a><a href="#contact">Book A Call</a><a href="#top">More Templates</a></div><div><b>POLICIES</b><a href="#top">Terms & Conditions</a><a href="#top">Privacy Policy</a></div></div></div><div className="footer-bottom"><span>armory</span><span>©2026 Armory AI. All rights reserved.</span><a href="#top">Back to top <MoveUpRight size={14}/></a></div></footer>
   </div>
 }
-
