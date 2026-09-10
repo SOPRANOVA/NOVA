@@ -1,2 +1,11 @@
-import Home from "./pages/Home";
-export default function App(){ return <Home/> }
+import { useEffect } from "react";
+
+export default function App() {
+  useEffect(() => {
+    if (window.location.pathname !== "/reference.html") {
+      window.location.replace("/reference.html");
+    }
+  }, []);
+
+  return null;
+}
