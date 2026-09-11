@@ -36,3 +36,28 @@
 
 @media(min-width:901px){.hero{min-height:980px}.hero-copy{top:430px;bottom:auto}}
 @media(max-width:900px){.hero{min-height:880px}}
+
+
+/* SOPRANOVA: content updates are immediate; no motion or transition is used. */
+#root.sopranova-react-no-motion, #root.sopranova-react-no-motion * {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+  animation-delay: 0s !important;
+  animation-duration: 0s !important;
+  transition-delay: 0s !important;
+  transition-duration: 0s !important;
+}
+html { scroll-behavior: auto !important; }
+
+
+/* SOPRANOVA global hard no-motion */
+*, *::before, *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+  animation-delay: 0s !important;
+  animation-duration: 0s !important;
+  transition-delay: 0s !important;
+  transition-duration: 0s !important;
+}

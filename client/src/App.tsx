@@ -1,10 +1,5 @@
-import { useEffect } from "react";
+import Home from "./pages/Home";
 
 export default function App() {
-  useEffect(() => {
-    if (window.location.pathname !== "/sopranova-control.html") {
-      window.location.replace("/sopranova-control.html");
-    }
-  }, []);
-  return null;
+  return <Home />;
 }
