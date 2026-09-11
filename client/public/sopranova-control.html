@@ -1680,4 +1680,70 @@
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(add,900)});else setTimeout(add,900);
 })();
 </script>
+
+<style id="sopranova-motion-disabled">
+html { scroll-behavior: auto !important; }
+*, *::before, *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+  animation-delay: 0s !important;
+  animation-duration: 0s !important;
+  transition-delay: 0s !important;
+  transition-duration: 0s !important;
+}
+[data-framer-appear-id], [data-framer-appear-id] * {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  filter: none !important;
+}
+</style>
+<script id="sopranova-motion-disabled-runtime">
+(function(){
+  function freeze(root){
+    if(!root || !root.querySelectorAll) return;
+    var nodes=[root].concat(Array.from(root.querySelectorAll('*')));
+    nodes.forEach(function(el){
+      if(el.style){
+        el.style.setProperty('animation','none','important');
+        el.style.setProperty('transition','none','important');
+        el.style.setProperty('animation-delay','0s','important');
+        el.style.setProperty('transition-delay','0s','important');
+      }
+      if(el.hasAttribute && el.hasAttribute('data-framer-appear-id')){
+        el.style.setProperty('opacity','1','important');
+        el.style.setProperty('visibility','visible','important');
+        el.style.setProperty('transform','none','important');
+        el.style.setProperty('filter','none','important');
+      }
+    });
+  }
+  function run(){ freeze(document.documentElement); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run,{once:true}); else run();
+  new MutationObserver(function(records){ records.forEach(function(r){ r.addedNodes.forEach(freeze); }); }).observe(document.documentElement,{subtree:true,childList:true});
+  window.__SOPRANOVA_MOTION_DISABLED__=true;
+})();
+</script>
+
+<style id="sopranova-motion-header-cleanup">
+#sopranova-brand { z-index: 100000 !important; }
+</style>
+<script id="sopranova-motion-header-cleanup">
+(function(){
+  function cleanHeader(){
+    var brand=document.getElementById('sopranova-brand');
+    document.querySelectorAll('body *').forEach(function(el){
+      if(!el || el===brand || (brand && brand.contains(el))) return;
+      var r=el.getBoundingClientRect ? el.getBoundingClientRect() : null;
+      if(!r || r.width<=0 || r.height<=0 || r.left>=300 || r.top>=105 || r.width>=300) return;
+      var text=(el.innerText||'').toLowerCase();
+      var hasBrand=text.includes('armory') || text.includes('sopranova') || el.querySelector('img,svg');
+      if(hasBrand) el.style.setProperty('visibility','hidden','important');
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',cleanHeader,{once:true}); else cleanHeader();
+  setTimeout(cleanHeader,100); setTimeout(cleanHeader,500); setTimeout(cleanHeader,1500);
+})();
+</script>
 </body><div id="manus-action-mask-host" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483646;"></div></html>
