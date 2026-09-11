@@ -1,5 +1,13 @@
+import { Link, Route, Switch } from "wouter";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
 import Home from "./pages/Home";
+import { About, Articles, Contact, NotFoundPage, Pricing, Projects, Services } from "./pages/SitePages";
 
-export default function App() {
-  return <Home />;
+function Layout() {
+  const [open, setOpen] = useState(false);
+  const links = [["Services", "/services"], ["Work", "/projects"], ["Insights", "/articles"], ["Pricing", "/pricing"], ["About", "/about"]];
+  return <div className="site-shell"><header className="topbar"><Link className="brand" href="/" onClick={()=>setOpen(false)}><img className="brand-mark" src="https://framerusercontent.com/images/0TbS3oHkBx5N44vDnhERKRfl4o.png" alt=""/><span>SOPRANOVA</span></Link><nav className="site-nav">{links.map(([label,path])=><Link key={path} href={path}>{label}</Link>)}</nav><Link className="nav-cta" href="/contact">Start a project <ArrowUpRight size={15}/></Link><button className="menu-button" onClick={()=>setOpen(!open)} aria-label="Toggle navigation">{open?<X/>:<Menu/>}</button></header>{open&&<div className="mobile-nav">{links.map(([label,path])=><Link key={path} href={path} onClick={()=>setOpen(false)}>{label}<ArrowUpRight size={17}/></Link>)}<Link href="/contact" onClick={()=>setOpen(false)}>Start a project <ArrowUpRight size={17}/></Link></div>}<Switch><Route path="/" component={Home}/><Route path="/services" component={Services}/><Route path="/projects" component={Projects}/><Route path="/articles" component={Articles}/><Route path="/pricing" component={Pricing}/><Route path="/about" component={About}/><Route path="/contact" component={Contact}/><Route component={NotFoundPage}/></Switch><footer className="footer"><div className="footer-top"><div><div className="footer-brand">✦ SOPRANOVA</div><p>Intelligence systems for teams building what comes next.</p><span>AUSTIN · NEW YORK · REMOTE</span></div><div className="footer-links"><div><b>EXPLORE</b>{links.slice(0,4).map(([label,path])=><Link key={path} href={path}>{label}</Link>)}</div><div><b>COMPANY</b><Link href="/about">About us</Link><Link href="/contact">Contact</Link><Link href="/contact">Book a call</Link></div><div><b>CONNECT</b><a href="mailto:hello@sopranova.ai">Email</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/SOPRANOVA/NOVA" target="_blank" rel="noreferrer">GitHub</a></div></div></div><div className="footer-bottom"><span>SOPRANOVA</span><span>©2026 SOPRANOVA AI. All rights reserved.</span><Link href="/">Back to top <ArrowUpRight size={14}/></Link></div></footer></div>;
 }
+
+export default function App() { return <Layout/>; }

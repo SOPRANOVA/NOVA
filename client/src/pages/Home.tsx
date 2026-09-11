@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDownRight, ArrowUpRight, Check, ChevronDown, Menu, X, Plus, MoveUpRight } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Check, ChevronDown, Plus } from "lucide-react";
 
 const serviceCards = [
   ["Secure Guard", "We fortify your AI deployments with robust security protocols. Our team ensures every model adheres to strict data privacy standards.", "01"],
@@ -20,16 +20,11 @@ function Pill({ children }: { children: React.ReactNode }) { return <span classN
 function SectionHead({ eyebrow, title, copy, dark=false }: { eyebrow:string; title:string; copy?:string; dark?:boolean }) { return <div className={`section-head ${dark?'light':''}`}><Pill>{eyebrow}</Pill><h2>{title}</h2>{copy && <p>{copy}</p>}</div> }
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [faq, setFaq] = useState(0);
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
-  const nav = ["Home", "Pricing", "About", "Projects", "Articles", "Contact Us"];
-  const go = (id:string) => { document.getElementById(id)?.scrollIntoView({ behavior:"auto" }); setMenuOpen(false); };
+  const go = (id:string) => { document.getElementById(id)?.scrollIntoView({ behavior:"auto" }); };
   return <div className="site-shell">
-    <header className="topbar"><button className="brand" onClick={()=>go("top")} aria-label="SOPRANOVA home"><img className="brand-mark" src="https://framerusercontent.com/images/0TbS3oHkBx5N44vDnhERKRfl4o.png" alt=""/><span>SOPRANOVA</span></button><nav className="top-links"><button onClick={()=>go("about")}>AI Strategy</button><button onClick={()=>go("about")}>Custom Agents</button><button onClick={()=>go("about")}>Process Automation</button><button onClick={()=>go("about")}>Data Intelligence</button></nav><button className="menu-button" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen?<X/>:<Menu/>}</button></header>
-    {menuOpen && <div className="menu-panel">{nav.map(n=><button key={n} onClick={()=>go(n.toLowerCase().replaceAll(" ","-"))}>{n}<ArrowUpRight size={18}/></button>)}</div>}
-
     <main id="top">
       <section className="hero section-grid"><div className="hero-visual"><div className="orb orb-a"/><div className="orb orb-b"/><div className="scanline"/><span className="hero-label">// AUTONOMOUS INTELLIGENCE SYSTEMS</span><div className="hero-code">[ 0x7A / ACTIVE ]<br/><span>neural mesh online</span></div></div><div className="hero-copy"><Pill>AI Strategy · Custom Agents · Process Automation · Data Intelligence</Pill><h1>Power your<br/><em>future</em> with AI</h1><p>Deploy custom enterprise agents and automate complex workflows. Scale your intelligence with SOPRANOVA today.</p><button className="primary" onClick={()=>go("contact")}>Build a workflow <ArrowUpRight size={17}/></button></div><div className="hero-footer"><span>Scroll to explore</span><ArrowDownRight/><span>29° 19′ MANCHACA RD<br/>AUSTIN, TX 78704</span></div></section>
 
@@ -57,6 +52,5 @@ export default function Home() {
 
       <section className="newsletter"><div className="container newsletter-inner"><div><Pill>12 / GET STARTED</Pill><h2>Get smarter about<br/><em>AI systems.</em></h2><p>Weekly insights on automation, AI workflows, and real builds. No fluff, just what works.</p></div><form onSubmit={(e)=>{e.preventDefault();setSubscribed(true)}}><label htmlFor="email">YOUR EMAIL</label><div className="email-row"><input id="email" type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@company.com" required/><button className="primary" type="submit">{subscribed?<Check size={17}/>:"Subscribe"}</button></div>{subscribed&&<small className="success">You’re on the list.</small>}</form></div></section>
     </main>
-    <footer className="footer"><div className="footer-top"><div><div className="footer-brand">✦ SOPRANOVA</div><p>Seamlessly connect your custom data to GPT-4, Claude 3, and Perplexity.</p><span>2919 MANCHACA RD #102<br/>AUSTIN, TX 78704</span></div><div className="footer-links"><div><b>QUICK LINKS</b>{nav.slice(0,5).map(n=><a href={`#${n.toLowerCase().replaceAll(' ','-')}`} key={n}>{n}</a>)}</div><div><b>COMPANY</b><a href="#about">About Us</a><a href="#contact">Contact Us</a><a href="#contact">Book A Call</a><a href="#top">More Templates</a></div><div><b>POLICIES</b><a href="#top">Terms & Conditions</a><a href="#top">Privacy Policy</a></div></div></div><div className="footer-bottom"><span>SOPRANOVA</span><span>©2026 SOPRANOVA AI. All rights reserved.</span><a href="#top">Back to top <MoveUpRight size={14}/></a></div></footer>
   </div>
 }
